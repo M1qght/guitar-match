@@ -5,4 +5,8 @@ major_version = 17
 
 [db.seed]
 enabled = true
-sql_paths = ["./seed.sql"]
+sql_paths = ["./seed.sql", "./seed/10_acoustic.sql", "./seed/20_electric.sql", "./seed/30_equipment.sql", "./seed/40_media_and_compatibility.sql"]
+
+[storage.buckets.catalog-images]
+public = true
+objects_path = "./catalog-images"
