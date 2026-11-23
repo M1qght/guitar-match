@@ -1,8 +1,13 @@
 import { Link } from 'react-router';
 import { Action } from '../../shared/ui';
-import { demoProducts } from './demoProducts';
-import ProductCard from './ProductCard';
+import { guitarTypes } from './catalogFilters';
 import styles from './catalog.module.css';
+
+const typeImages = {
+  classical: '/images/classical.jpg',
+  steel_acoustic: '/images/acoustic.jpg',
+  electric: '/images/electric.jpg',
+};
 
 export default function Home() {
   return <>
@@ -19,13 +24,20 @@ export default function Home() {
     </section>
     <section className={styles.collection} aria-labelledby="collection">
       <div className={styles.sectionTitle}>
-        <div>
-          <h2 id="collection">Три типа гитар</h2>
-          <p>Примеры из демонстрационного каталога</p>
-        </div>
+        <h2 id="collection">Три типа гитар</h2>
         <Link to="/catalog">Весь каталог <span aria-hidden="true">↗</span></Link>
       </div>
-      <div className={styles.grid}>{demoProducts.map((product) => <ProductCard key={product.slug} product={product} />)}</div>
+      <div className={styles.grid}>
+        {guitarTypes.map(({ id, label }) => (
+          <Link key={id} className={styles.card} to={`/catalog?kind=guitar&type=${id}`}>
+            <div className={styles.cardMedia}><img src={typeImages[id]} alt="" loading="lazy" /></div>
+            <div className={styles.cardBody}>
+              <h3 className={styles.cardTitle}>{label}</h3>
+              <span className={styles.arrow} aria-hidden="true">↗</span>
+            </div>
+          </Link>
+        ))}
+      </div>
     </section>
   </>;
 }

@@ -13,20 +13,41 @@
 .grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
 .card { display: block; border: 1px solid var(--line); border-radius: .85rem; overflow: hidden; background: var(--surface); text-decoration: none; }
 .card:hover { border-color: var(--muted); }
-.cardMedia { position: relative; aspect-ratio: 1.55; overflow: hidden; background: var(--tint); }
+.cardMedia { aspect-ratio: 1.55; overflow: hidden; background: var(--tint); }
 .cardMedia img { width: 100%; height: 100%; object-fit: cover; object-position: center 82%; }
-.demo { position: absolute; top: .7rem; left: .7rem; border-radius: 2rem; padding: .18rem .65rem; font-weight: 700; font-size: .78rem; background: var(--surface); }
+.photoPlaceholder { display: grid; place-items: center; min-height: 8rem; height: 100%; padding: 1rem; text-align: center; background: var(--tint); color: var(--muted); }
 .cardBody { position: relative; padding: .85rem 2.25rem .85rem 1rem; }
-.cardBody span:first-child { font-size: .87rem; color: var(--muted); }
-.cardBody h3 { font-size: 1.2rem; margin-top: .25rem; }
+.cardCategory { font-size: .87rem; color: var(--muted); }
+.cardTitle { font-size: 1.2rem; margin-top: .25rem; overflow-wrap: anywhere; }
+.price { margin-top: .4rem; font-weight: 700; }
 .arrow { position: absolute; bottom: .85rem; right: 1rem; }
 .filters { display: flex; flex-wrap: wrap; gap: .8rem; margin-bottom: 1.25rem; }
-.filters label { flex: 1 1 14rem; display: grid; gap: .3rem; font-weight: 600; }
-.filters :is(input, select) { min-height: 44px; min-width: 0; padding: .55rem .7rem; border: 1px solid var(--line); border-radius: .55rem; background: var(--surface); color: var(--ink); }
-.detail { margin-top: 1rem; display: grid; gap: 1.25rem; background: var(--surface); border: 1px solid var(--line); border-radius: 1rem; overflow: hidden; }
+.search { display: flex; flex-wrap: wrap; align-items: end; gap: .8rem; margin-bottom: 1rem; }
+.filters label, .search label { flex: 1 1 14rem; min-width: 0; display: grid; gap: .3rem; font-weight: 600; }
+.search input, .filters select { min-height: 44px; min-width: 0; padding: .55rem .7rem; border: 1px solid var(--line); border-radius: .55rem; background: var(--surface); color: var(--ink); }
+.filterGroup { min-inline-size: 0; margin: 0 0 1.25rem; padding: .85rem 1rem 1rem; border: 1px solid var(--line); border-radius: .65rem; }
+.filterGroup legend { padding-inline: .35rem; font-weight: 700; }
+.filterGroup .filters { margin-bottom: 0; }
+.clearFilters { margin-bottom: 1rem; }
+.pagination { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .65rem; margin-top: 1.25rem; }
+.productContent { margin-top: 1rem; }
+.detail { display: grid; gap: 1.25rem; background: var(--surface); border: 1px solid var(--line); border-radius: 1rem; overflow: hidden; }
+.gallery { min-width: 0; }
+.gallery figure { margin: 0; }
+.gallery figcaption { display: flex; flex-wrap: wrap; gap: .25rem .7rem; padding: .55rem .85rem; color: var(--muted); font-size: .85rem; overflow-wrap: anywhere; }
 .detailImage { width: 100%; height: auto; max-height: 28rem; object-fit: contain; background: var(--tint); }
+.thumbnails { display: flex; flex-wrap: wrap; gap: .5rem; padding: .6rem .85rem .85rem; }
+.thumbnails button { flex: 0 0 3.5rem; height: 3.5rem; padding: .15rem; border: 1px solid var(--line); border-radius: .55rem; background: var(--surface); }
+.thumbnails button[aria-pressed="true"] { border-color: var(--focus); box-shadow: inset 0 0 0 1px var(--focus); }
+.thumbnails img { width: 100%; height: 100%; border-radius: .35rem; object-fit: cover; }
 .detailBody { align-self: center; padding: clamp(1rem, 4vw, 2rem); }
+.detailBody h1 { overflow-wrap: anywhere; }
 .detailLabel { margin: 0 0 .5rem; font-weight: 650; }
+.detail .detailPrice { color: var(--ink); font-size: 1.35rem; font-weight: 700; }
+.metadata { font-size: .9rem; }
+.specs { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: .75rem; margin-block: 1.25rem; }
+.specs dt, .specs dd { margin: 0; padding-block: .45rem; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+.specs dt { color: var(--muted); }
 .choices { margin: 0; padding: 0; border: 0; display: grid; gap: .65rem; }
 .choices legend { margin-bottom: .65rem; font-weight: 700; }
 .choice { display: flex; gap: .6rem; align-items: center; padding: 1rem; border: 1px solid var(--line); border-radius: .65rem; background: var(--surface); cursor: pointer; }
@@ -40,5 +61,5 @@
   .hero { grid-template-columns: 1.05fr 1fr; }
   .heroImage { height: 100%; aspect-ratio: auto; object-position: 57% center; }
   .grid, .choices { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .detail { grid-template-columns: 1fr 1fr; }
+  .detail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

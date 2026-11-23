@@ -1,18 +1,27 @@
-import { Link } from 'react-router';
-import { getCategory } from './demoProducts';
+import { Link, useLocation } from 'react-router';
 import styles from './catalog.module.css';
 
+export function formatPrice(amountMinor, currency) {
+  if (amountMinor == null || !currency) return null;
+  return new Intl.NumberFormat('ru-RU', { style: 'currency', currency }).format(amountMinor / 100);
+}
+
 export default function ProductCard({ product }) {
+  const { search } = useLocation();
+  const image = product.images[0];
+  const price = formatPrice(product.priceAmountMinor, product.currency);
   return (
     <article>
-      <Link className={styles.card} to={`/catalog/${product.slug}`}>
+      <Link className={styles.card} to={`/catalog/${product.slug}`} state={{ catalogSearch: search }}>
         <div className={styles.cardMedia}>
-          <img src={product.image} alt="" width="512" height="1024" loading="lazy" />
-          <span className={styles.demo}>Демо</span>
+          {image
+            ? <img src={image.url} alt="" loading="lazy" />
+            : <span className={styles.photoPlaceholder}>Нет фото</span>}
         </div>
         <div className={styles.cardBody}>
-          <span>{getCategory(product.type).label}</span>
-          <h3>{product.model}</h3>
+          <span className={styles.cardCategory}>{product.categoryLabel}</span>
+          <h2 className={styles.cardTitle}>{product.brand} {product.model}</h2>
+          {price && <p className={styles.price}>{price}</p>}
           <span className={styles.arrow} aria-hidden="true">↗</span>
         </div>
       </Link>

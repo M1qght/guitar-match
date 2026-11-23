@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router';
 import { Action, PageHeading } from '../../shared/ui';
-import { categories } from '../catalog/demoProducts';
+import { guitarTypes as categories } from '../catalog/catalogFilters';
 import styles from '../catalog/catalog.module.css';
 
 export default function Match() {
