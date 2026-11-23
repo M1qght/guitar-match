@@ -1,0 +1,20 @@
+.action, .secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  min-height: 46px;
+  padding: .65rem 1.05rem;
+  border: 1px solid transparent;
+  border-radius: .65rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.action { color: #21140f; background: var(--accent); }
+.action:hover { background: #ff9b6a; }
+.secondary { border-color: var(--line); background: var(--surface); color: var(--ink); }
+.secondary:hover { border-color: var(--muted); }
+.heading { margin-bottom: 2rem; }
+.heading p, .status p { color: var(--muted); max-width: 56ch; }
+.status { background: var(--surface); border: 1px solid var(--line); border-radius: 1rem; padding: clamp(1.2rem, 4vw, 2.5rem); }
+.status :is(a, button) { margin-top: .75rem; }
