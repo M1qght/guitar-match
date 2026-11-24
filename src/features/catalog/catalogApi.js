@@ -2,8 +2,8 @@ import { getSupabase } from '../../shared/supabase';
 import { categories, categoryFilters, guitarTypes } from './catalogFilters';
 
 const PAGE_SIZE = 12;
-const PRODUCT_FIELDS = 'slug,kind,brand,model,price_amount_minor,currency';
-const SUMMARY = `${PRODUCT_FIELDS},product_images(storage_path,alt_text)`;
+const PRODUCT_FIELDS = 'id,slug,kind,brand,model,price_amount_minor,currency,is_active';
+export const SUMMARY = `${PRODUCT_FIELDS},product_images(storage_path,alt_text)`;
 const DETAIL = `${PRODUCT_FIELDS},
   product_images(storage_path,alt_text,source_url,rights_url,attribution_text,author,rights_label),
   spec_source_url,price_source_url,price_checked_on,
@@ -37,9 +37,11 @@ function formatSpecs(row) {
   });
 }
 
-function toProduct(row, client) {
+export function toProduct(row, client) {
   const guitar = Array.isArray(row.guitar_specs) ? row.guitar_specs[0] : row.guitar_specs;
   return {
+    id: row.id,
+    isActive: row.is_active,
     slug: row.slug,
     kind: row.kind,
     brand: row.brand,

@@ -10,3 +10,16 @@ sql_paths = ["./seed.sql", "./seed/10_acoustic.sql", "./seed/20_electric.sql", "
 [storage.buckets.catalog-images]
 public = true
 objects_path = "./catalog-images"
+
+[auth]
+site_url = "http://localhost:5173"
+additional_redirect_urls = [
+  "http://localhost:5173/profile",
+  "http://localhost:5173/reset-password",
+  "http://127.0.0.1:5173/profile",
+  "http://127.0.0.1:5173/reset-password",
+]
+minimum_password_length = 8
+
+[auth.email]
+enable_confirmations = true

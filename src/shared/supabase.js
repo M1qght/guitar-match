@@ -12,7 +12,7 @@ export function getSupabase() {
   if (!client) {
     try {
       client = createClient(url, key, {
-        auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
+        auth: { flowType: 'pkce' },
       });
     } catch {
       throw new Error('Проверьте URL Supabase в настройках приложения.');

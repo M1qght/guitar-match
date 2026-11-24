@@ -1,0 +1,76 @@
+.page {
+  width: min(100%, 34rem);
+  margin-inline: auto;
+}
+
+.form {
+  padding: clamp(1rem, 4vw, 1.75rem);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--surface);
+}
+
+.form fieldset {
+  display: grid;
+  gap: .9rem;
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.form label {
+  display: grid;
+  gap: .35rem;
+  font-weight: 650;
+}
+
+.form input {
+  min-width: 0;
+  min-height: 44px;
+  padding: .55rem .7rem;
+  border: 1px solid var(--line);
+  border-radius: .55rem;
+  background: var(--bg);
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.form button {
+  justify-self: start;
+}
+
+.form button:disabled {
+  cursor: wait;
+  opacity: .65;
+}
+
+.hint,
+.error {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.hint {
+  color: var(--muted);
+}
+
+.error {
+  color: #9e3329;
+}
+
+:global([data-theme="dark"]) .error {
+  color: #ffaea3;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem 1.25rem;
+  margin-top: 1rem;
+}
+
+.links a {
+  font-weight: 650;
+  text-underline-offset: .2rem;
+}

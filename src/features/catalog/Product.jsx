@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router';
 import { Action, Status } from '../../shared/ui';
 import { fetchProduct } from './catalogApi';
+import { FavoriteButton } from '../account/AccountRoutes';
 import { formatPrice } from './ProductCard';
 import styles from './catalog.module.css';
 
@@ -38,7 +39,8 @@ export default function Product() {
   const { state } = useLocation();
   const [attempt, setAttempt] = useState(0);
   const [response, setResponse] = useState(null);
-  const backTo = { pathname: '/catalog', search: state?.catalogSearch ?? '' };
+  const fromFavorites = state?.fromFavorites === true;
+  const backTo = { pathname: fromFavorites ? '/favorites' : '/catalog', search: state?.catalogSearch ?? '' };
 
   useEffect(() => {
     const controller = new AbortController();
@@ -57,7 +59,7 @@ export default function Product() {
   const price = product && formatPrice(product.priceAmountMinor, product.currency);
 
   return <>
-    <Link className={styles.back} to={backTo}>← Каталог</Link>
+    <Link className={styles.back} to={backTo}>← {fromFavorites ? 'Избранное' : 'Каталог'}</Link>
     <div className={styles.productContent}>
       {!result && <Status heading="h1" title="Загружаем товар…" />}
       {result?.error && <Status heading="h1" kind="error" title="Не удалось загрузить товар"
@@ -84,6 +86,7 @@ export default function Product() {
             </dl>
           )}
           {product.specSourceUrl && <p><a href={product.specSourceUrl}>Спецификация производителя</a></p>}
+          <div className={styles.actions}><FavoriteButton productId={product.id} /></div>
         </div>
       </article>}
     </div>

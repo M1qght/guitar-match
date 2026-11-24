@@ -7,12 +7,15 @@ export function formatPrice(amountMinor, currency) {
 }
 
 export default function ProductCard({ product }) {
-  const { search } = useLocation();
+  const { pathname, search } = useLocation();
   const image = product.images[0];
   const price = formatPrice(product.priceAmountMinor, product.currency);
   return (
     <article>
-      <Link className={styles.card} to={`/catalog/${product.slug}`} state={{ catalogSearch: search }}>
+      <Link className={styles.card} to={`/catalog/${product.slug}`} state={{
+        catalogSearch: search,
+        fromFavorites: pathname === '/favorites',
+      }}>
         <div className={styles.cardMedia}>
           {image
             ? <img src={image.url} alt="" loading="lazy" />

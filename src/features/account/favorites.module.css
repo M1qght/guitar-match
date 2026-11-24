@@ -1,0 +1,12 @@
+.actions, .list { display: flex; flex-wrap: wrap; gap: .8rem; }
+.filter { display: grid; gap: .35rem; max-width: 19rem; margin-bottom: 1rem; }
+.filter select {
+  min-height: 44px;
+  padding: .5rem;
+  border: 1px solid var(--line);
+  border-radius: .55rem;
+  color: var(--ink);
+  background: var(--surface);
+}
+.list { list-style: none; padding: 0; }
+.list li { flex: 1 1 16rem; max-width: 22rem; display: grid; gap: .65rem; align-content: start; }

@@ -1,6 +1,8 @@
 import { Component, lazy, Suspense, useEffect, useState } from 'react';
 import { Link, NavLink, Route, Routes, useLocation } from 'react-router';
 import Home from '../features/catalog/Home';
+import { ForgotPasswordPage, LoginPage, RegisterPage, ResetPasswordPage } from '../features/account/AuthPages';
+import { FavoritesPage, ProfilePage, RequireAccount } from '../features/account/AccountRoutes';
 import { Action, PageHeading, Status } from '../shared/ui';
 import styles from './App.module.css';
 
@@ -86,7 +88,14 @@ export default function App() {
               <Route path="catalog/:slug" element={<Product />} />
               <Route path="presets/new" element={<Match />} />
               <Route path="try" element={<TryPage />} />
-              <Route path="profile" element={<ProfilePage />} />
+              <Route path="login" element={<LoginPage />} />
+              <Route path="register" element={<RegisterPage />} />
+              <Route path="forgot-password" element={<ForgotPasswordPage />} />
+              <Route path="reset-password" element={<ResetPasswordPage />} />
+              <Route element={<RequireAccount />}>
+                <Route path="profile" element={<ProfilePage />} />
+                <Route path="favorites" element={<FavoritesPage />} />
+              </Route>
               <Route path="*" element={<Status heading="h1" kind="error" title="Страница не найдена"
                 action={<Action to="/">На главную</Action>} />} />
             </Routes>
@@ -107,14 +116,5 @@ function TryPage() {
   return <>
     <PageHeading title="Опробовать">Здесь будут реальные записи гитар с указанием модели и источника.</PageHeading>
     <Status title="Аудиозаписей пока нет" action={<Action to="/catalog">Смотреть каталог</Action>} />
-  </>;
-}
-
-function ProfilePage() {
-  return <>
-    <PageHeading title="Профиль">Здесь будут настройки профиля, избранное и сохранённые наборы.</PageHeading>
-    <Status title="Гостевой режим" action={<Action to="/catalog">Смотреть каталог</Action>}>
-      Вход появится после подключения аккаунтов.
-    </Status>
   </>;
 }
